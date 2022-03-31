@@ -1,0 +1,3 @@
+[submodule "amadeus-open-api-specification"]
+	path = amadeus-open-api-specification
+	url = https://github.com/amadeus4dev/amadeus-open-api-specification
