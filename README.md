@@ -1,4 +1,4 @@
-# Spring Boot + OAS Code Generation Demo
+# Spring Boot + Amadeus OAS Code Generation Demo
 
 ## How to use it?
 
