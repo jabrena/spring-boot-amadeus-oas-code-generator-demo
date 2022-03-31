@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.jab.ms</groupId>
-    <artifactId>openapi-spring-amadeus-client</artifactId>
+    <artifactId>spring-boot-amadeus-oas-code-generator-demo</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
     <properties>
@@ -39,14 +39,14 @@
             <version>3.0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.1</version>
-        </dependency>
-        <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.2</version>
         </dependency>
 
         <dependency>
@@ -58,457 +58,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.openapitools.openapistylevalidator</groupId>
-                <artifactId>openapi-style-validator-maven-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>authentication</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/authentication/amadeus-authentication-api.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <!--
-                    <execution>
-                        <id>TravelRestrictions</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/covid-19-and-travel-safety/US-ASCII_charset_version_of-TravelRestrictions_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription>
-                            <validateOperationTag>false</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription>
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    -->
-                    <execution>
-                        <id>AirlineCodeLookUp</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/AirlineCodeLookUp_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>AirportCitySearch</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/AirportCitySearch_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>AirportNearestRelevant</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/AirportNearestRelevant_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightCheck-inLinks</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightCheck-inLinks_v2_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightMostTraveledDestinations</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightMostTraveledDestinations_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightBusiestTravelingPeriod</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightBusiestTravelingPeriod_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightMostBookedDestinations</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightMostBookedDestinations_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>OnDemandFlightStatus</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/OnDemandFlightStatus_v2_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightPriceAnalysis</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightPriceAnalysis_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightDelayPrediction</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightDelayPrediction_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>AirportOnTimePerformance</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/AirportOnTimePerformance_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightChoicePrediction</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightChoicePrediction_v2_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightCreateOrders</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightCreateOrders_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>FlightOrderManagement</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/FlightOrderManagement_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>AirportRoutes</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>validate</goal>
-                        </goals>
-                        <configuration>
-                            <inputFile>${project.basedir}/spec/air/AirportRoutes_v1_swagger_specification.yaml</inputFile>
-                            <validateInfoLicense>false</validateInfoLicense>
-                            <validateInfoDescription>true</validateInfoDescription>
-                            <validateInfoContact>false</validateInfoContact>
-                            <validateOperationOperationId>true</validateOperationOperationId>
-                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
-                            <validateOperationTag>true</validateOperationTag>
-                            <validateOperationSummary>true</validateOperationSummary>
-                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
-                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
-                            <validateModelPropertiesDescription>false</validateModelPropertiesDescription><!-- * -->
-                            <pathNamingConvention>HyphenCase</pathNamingConvention>
-                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
-                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
-                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
-                            <validateNaming>false</validateNaming>
-                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -536,13 +85,13 @@
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
-                        <version>9.2.1</version>
+                        <version>10.1</version>
                     </dependency>
                 </dependencies>
                 <configuration>
                     <!-- https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml -->
-                    <configLocation>google_checks.xml</configLocation>
-                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+                    <configLocation>src/main/checkstyle/google_checks.xml</configLocation>
+                    <suppressionsLocation>src/main/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
@@ -555,6 +104,34 @@
                 <executions>
                     <execution>
                         <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.hubspot.maven.plugins</groupId>
+                <artifactId>prettier-maven-plugin</artifactId>
+                <version>0.17</version>
+                <configuration>
+                    <prettierJavaVersion>1.6.1</prettierJavaVersion>
+                    <printWidth>120</printWidth>
+                    <tabWidth>4</tabWidth>
+                    <useTabs>false</useTabs>
+                    <ignoreConfigFile>true</ignoreConfigFile>
+                    <ignoreEditorConfig>true</ignoreEditorConfig>
+                    <!-- Use <inputGlobs> to override the default input patterns -->
+                    <inputGlobs>
+                        <!-- These are the default patterns, you can omit <inputGlobs> entirely unless you want to override them -->
+                        <inputGlob>src/main/java/**/*.java</inputGlob>
+                        <inputGlob>src/test/java/**/*.java</inputGlob>
+                    </inputGlobs>
+                </configuration>
+                <executions>
+                    <execution>
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
@@ -580,17 +157,85 @@
                                 <requireJavaVersion>
                                     <version>17</version>
                                 </requireJavaVersion>
+                                <!--
                                 <bannedDependencies>
                                     <excludes>
                                         <exclude>org.projectlombok:lombok</exclude>
                                     </excludes>
                                 </bannedDependencies>
+                                -->
                             </rules>
                             <fail>true</fail>
                         </configuration>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.10.0</version>
+            </plugin>
+
+            <!-- OpenAPI Tools: Validator & Code Generator -->
+            <plugin>
+                <groupId>org.openapitools.openapistylevalidator</groupId>
+                <artifactId>openapi-style-validator-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>authentication</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <inputFile>${project.basedir}/amadeus-open-api-specification/spec/yaml/Authorizaton_v1_swagger_specification.yaml</inputFile>
+                            <validateInfoLicense>false</validateInfoLicense>
+                            <validateInfoDescription>true</validateInfoDescription>
+                            <validateInfoContact>false</validateInfoContact>
+                            <validateOperationOperationId>true</validateOperationOperationId>
+                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
+                            <validateOperationTag>true</validateOperationTag>
+                            <validateOperationSummary>true</validateOperationSummary>
+                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
+                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
+                            <pathNamingConvention>HyphenCase</pathNamingConvention>
+                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
+                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
+                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
+                            <validateNaming>false</validateNaming>
+                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
+                        </configuration>
+                    </execution>
+                    <!-- Reviewing some rules -->
+                    <execution>
+                        <id>travel-restrictions</id>
+                        <phase>validate2</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <inputFile>${project.basedir}/amadeus-open-api-specification/spec/yaml/TravelRestrictions_v1_swagger_specification.yaml</inputFile>
+                            <validateInfoLicense>false</validateInfoLicense>
+                            <validateInfoDescription>true</validateInfoDescription>
+                            <validateInfoContact>false</validateInfoContact>
+                            <validateOperationOperationId>true</validateOperationOperationId>
+                            <validateOperationDescription>false</validateOperationDescription><!-- * -->
+                            <validateOperationTag>true</validateOperationTag>
+                            <validateOperationSummary>true</validateOperationSummary>
+                            <validateModelPropertiesExample>false</validateModelPropertiesExample>
+                            <validateModelNoLocalDef>true</validateModelNoLocalDef>
+                            <pathNamingConvention>HyphenCase</pathNamingConvention>
+                            <parameterNamingConvention>CamelCase</parameterNamingConvention>
+                            <headerNamingConvention>UnderscoreCase</headerNamingConvention>
+                            <propertyNamingConvention>CamelCase</propertyNamingConvention>
+                            <validateNaming>false</validateNaming>
+                            <ignoreHeaderXNaming>true</ignoreHeaderXNaming>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -606,7 +251,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/spec/authentication/amadeus-authentication-api.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/amadeus-open-api-specification/spec/yaml/Authorizaton_v1_swagger_specification.yaml</inputSpec>
                             <generatorName>java</generatorName>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateApiTests>false</generateApiTests>
@@ -627,8 +272,7 @@
                             <!-- <goal>generate</goal> -->
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/spec/covid-19-and-travel-safety/TravelRestrictions_v1_swagger_specification.yaml
-                            </inputSpec>
+                            <inputSpec>${project.basedir}/amadeus-open-api-specification/spec/yaml/TravelRestrictions_v1_swagger_specification.yaml</inputSpec>
                             <generatorName>java</generatorName>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateApiTests>false</generateApiTests>
@@ -649,7 +293,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/spec/air/FlightCheck-inLinks_v2_swagger_specification.yaml
+                            <inputSpec>${project.basedir}/amadeus-open-api-specification/spec/yaml/FlightCheck-inLinks_v2_swagger_specification.yaml
                             </inputSpec>
                             <generatorName>java</generatorName>
                             <modelNameSuffix>Dto</modelNameSuffix>
@@ -661,72 +305,6 @@
                                 <modelPackage>com.jab.ms.openapi.gen.amadeus.flight_check_in_links.model</modelPackage>
                                 <apiPackage>com.jab.ms.openapi.gen.amadeus.flight_check_in_links.api</apiPackage>
                                 <invokerPackage>com.jab.ms.openapi.gen.amadeus.flight_check_in_links.client</invokerPackage>
-                                <dateLibrary>java8</dateLibrary>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>airport_nearest_relevant</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/spec/air/AirportNearestRelevant_v1_swagger_specification.yaml
-                            </inputSpec>
-                            <generatorName>java</generatorName>
-                            <modelNameSuffix>Dto</modelNameSuffix>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelTests>false</generateModelTests>
-                            <library>resttemplate</library>
-                            <configOptions>
-                                <basePackage>com.jab.ms.openapi.gen.amadeus.airport_nearest_relevant</basePackage>
-                                <modelPackage>com.jab.ms.openapi.gen.amadeus.airport_nearest_relevant.model</modelPackage>
-                                <apiPackage>com.jab.ms.openapi.gen.amadeus.airport_nearest_relevant.api</apiPackage>
-                                <invokerPackage>com.jab.ms.openapi.gen.amadeus.airport_nearest_relevant.client</invokerPackage>
-                                <dateLibrary>java8</dateLibrary>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>airport_city_search</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/spec/air/AirportCitySearch_v1_swagger_specification.yaml
-                            </inputSpec>
-                            <generatorName>java</generatorName>
-                            <modelNameSuffix>Dto</modelNameSuffix>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelTests>false</generateModelTests>
-                            <library>resttemplate</library>
-                            <configOptions>
-                                <basePackage>com.jab.ms.openapi.gen.amadeus.airport_city_search</basePackage>
-                                <modelPackage>com.jab.ms.openapi.gen.amadeus.airport_city_search.model</modelPackage>
-                                <apiPackage>com.jab.ms.openapi.gen.amadeus.airport_city_search.api</apiPackage>
-                                <invokerPackage>com.jab.ms.openapi.gen.amadeus.airport_city_search.client</invokerPackage>
-                                <dateLibrary>java8</dateLibrary>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>airline_code_lookUp</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/spec/air/AirlineCodeLookUp_v1_swagger_specification.yaml
-                            </inputSpec>
-                            <generatorName>java</generatorName>
-                            <modelNameSuffix>Dto</modelNameSuffix>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelTests>false</generateModelTests>
-                            <library>resttemplate</library>
-                            <configOptions>
-                                <basePackage>com.jab.ms.openapi.gen.amadeus.airline_code_lookUp</basePackage>
-                                <modelPackage>com.jab.ms.openapi.gen.amadeus.airline_code_lookUp.model</modelPackage>
-                                <apiPackage>com.jab.ms.openapi.gen.amadeus.airline_code_lookUp.api</apiPackage>
-                                <invokerPackage>com.jab.ms.openapi.gen.amadeus.airline_code_lookUp.client</invokerPackage>
                                 <dateLibrary>java8</dateLibrary>
                             </configOptions>
                         </configuration>

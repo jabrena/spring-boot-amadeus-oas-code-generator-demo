@@ -12,4 +12,8 @@
     <suppress checks="MagicNumber" files="." />
     <suppress checks="LocalVariableName" files="." />
     <suppress checks="LineLength" files="." />
+    <suppress checks="OneTopLevelClass" files="." />
+    <suppress checks="AbbreviationAsWordInName" files="." />
+    <suppress checks="MemberName" files="." />
+    <suppress checks="ParameterName" files="." />
 </suppressions>
